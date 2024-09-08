@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3 uid="uid://br5xltnee07ke"]
+
+[ext_resource type="Shader" path="res://Shaders/transparent_greyscale.gdshader" id="1_a1nau"]
+[ext_resource type="TileSet" uid="uid://83uxhvtnq27c" path="res://Assets/text_tileset.tres" id="2_d43lw"]
+[ext_resource type="Script" path="res://Scenes/text_tilemap.gd" id="3_i33n2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_caw68"]
+shader = ExtResource("1_a1nau")
+
+[node name="TextTilemap" type="TileMapLayer"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_caw68")
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0)
+tile_set = ExtResource("2_d43lw")
+script = ExtResource("3_i33n2")

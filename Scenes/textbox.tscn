@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://be5tng8gy2lh0"]
+
+[ext_resource type="Shader" path="res://Shaders/transparent_greyscale.gdshader" id="1_ltrss"]
+[ext_resource type="Texture2D" uid="uid://b7oqcrqnylqpn" path="res://Assets/textbox.png" id="2_s50nn"]
+[ext_resource type="Script" path="res://Scripts/textbox.gd" id="3_dyxqs"]
+[ext_resource type="PackedScene" uid="uid://br5xltnee07ke" path="res://Scenes/text_display.tscn" id="3_kuguh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2mooh"]
+shader = ExtResource("1_ltrss")
+
+[node name="Textbox" type="NinePatchRect"]
+self_modulate = Color(0.956863, 0.835294, 1, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_2mooh")
+offset_left = 10.0
+offset_top = 417.0
+offset_right = 236.0
+offset_bottom = 463.0
+scale = Vector2(5, 5)
+texture = ExtResource("2_s50nn")
+region_rect = Rect2(1, 0, 22, 21)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+script = ExtResource("3_dyxqs")
+text = "Hello!!
+This is Madi the [eep]y girl,
+speaking to you via a 
+funny tilemap thingie.
+Her game will probably
+have a lot of these."
+
+[node name="VisMask" type="ColorRect" parent="."]
+clip_children = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 222.0
+offset_bottom = 42.0
+
+[node name="TextDisplay" parent="VisMask" instance=ExtResource("3_kuguh")]
+position = Vector2(3, 3)
+scale = Vector2(1, 1)
+tile_map_data = PackedByteArray()
+max_display_lines = 3

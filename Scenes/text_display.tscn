@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://br5xltnee07ke"]
+
+[ext_resource type="Shader" path="res://Shaders/transparent_greyscale.gdshader" id="1_vyqu0"]
+[ext_resource type="TileSet" uid="uid://83uxhvtnq27c" path="res://Assets/text_tileset.tres" id="2_p7fve"]
+[ext_resource type="Script" path="res://Scripts/text_display.gd" id="3_u4vow"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_caw68"]
+shader = ExtResource("1_vyqu0")
+
+[node name="TextDisplay" type="TileMapLayer"]
+texture_filter = 1
+material = SubResource("ShaderMaterial_caw68")
+scale = Vector2(5, 5)
+tile_set = ExtResource("2_p7fve")
+script = ExtResource("3_u4vow")
+text = "Hello!
+This is Madi the [eep]y girl,
+speaking to you via a 
+funny tilemap thingie.
+Her game will probably
+have a lot of these."
