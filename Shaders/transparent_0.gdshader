@@ -5,10 +5,7 @@ void vertex() {
 }
 
 void fragment() {
-	if (COLOR.r == 187.0/255.0 && COLOR.g == 187.0/255.0 && COLOR.b == 187.0/255.0) {
-		COLOR.a = 0.0;
-	}
-	else if (COLOR.r == 0.0 && COLOR.g == 0.0 && COLOR.b == 0.0) {
+	if (COLOR.r == 0.0 && COLOR.g == 0.0 && COLOR.b == 0.0) {
 		COLOR.a = 0.0;
 	}
 }

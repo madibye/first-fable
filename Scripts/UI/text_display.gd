@@ -2,18 +2,41 @@
 class_name TextDisplay
 extends TileMapLayer
 
-@export_multiline var text = ""
-var display_chars: int = -1
-var current_display_chars: int = -1
-@export var max_display_chars: int = -1
-@export var max_display_lines: int = -1
-@export var instant_queue: bool = false
+@export_multiline var text = "":
+	set(t):
+		text = t
+		refresh_text()
+var display_chars: int = 0
+@export var max_display_chars: int = -1:
+	set(i):
+		max_display_chars = i
+		refresh_text()
+@export var max_display_lines: int = -1:
+	set(i):
+		max_display_lines = i
+		refresh_text()
+@export var max_display_cols: int = -1:
+	set(i):
+		max_display_cols = i
+		refresh_text()
+@export var time_between_chars: float = 0.05:
+	set(i):
+		time_between_chars = i
+		refresh_text()
+@export var char_spacing: int = 8:
+	set(i):
+		char_spacing = i
+		refresh_text()
+@export var line_spacing: int = 10:
+	set(i):
+		line_spacing = i
+		refresh_text()
+var char_queue_running: bool = true
+var time_since_last_char: float = 0.0
 var hidden_lines: PackedInt32Array
 var char_queue: PackedStringArray
 var tile_queue = null
-var total_display_chars: int = 0
 var current_position: Vector2i = Vector2i(0, 0)
-var prev_frame_data: Dictionary = {}
 
 var text_to_tiles: Dictionary = {
 	'0': Vector2i(0, 8), '1': Vector2i(1, 8), '2': Vector2i(2, 8), '3': Vector2i(3, 8), '4': Vector2i(4, 8), '5': Vector2i(5, 8),
@@ -26,8 +49,8 @@ var text_to_tiles: Dictionary = {
 	'g': Vector2i(10, 10), 'h': Vector2i(11, 10), 'i': Vector2i(12, 10), 'j': Vector2i(13, 10), 'k': Vector2i(14, 10), 'l': Vector2i(15, 10),
 	'm': Vector2i(0, 11), 'n': Vector2i(1, 11), 'o': Vector2i(2, 11), 'p': Vector2i(3, 11), 'q': Vector2i(4, 11), 'r': Vector2i(5, 11),
 	's': Vector2i(6, 11), 't': Vector2i(7, 11), 'u': Vector2i(8, 11), 'v': Vector2i(9, 11), 'w': Vector2i(10, 11), 'x': Vector2i(11, 11),
-	'y': Vector2i(12, 11), 'z': Vector2i(13, 11), "'": Vector2i(14, 11), ',': Vector2i(15, 11), '.': Vector2i(0, 12), '-': Vector2i(2, 12),
-	'…': Vector2i(3, 12), '!': Vector2i(4, 12), '?': Vector2i(5, 12), '%': Vector2i(0, 14),
+	'y': Vector2i(12, 11), 'z': Vector2i(13, 11), "'": Vector2i(14, 11), ',': Vector2i(15, 11), '.': Vector2i(0, 12), '+': Vector2i(1, 12), 
+	'-': Vector2i(2, 12), '_': Vector2i(3, 12), '!': Vector2i(4, 12), '?': Vector2i(5, 12), '%': Vector2i(0, 14),
 }
 
 var text_to_tile_lists: Dictionary = {
@@ -42,48 +65,67 @@ var text_to_tile_lists: Dictionary = {
 	"PoisonStone": [Vector2i(2, 14), Vector2i(3, 14), Vector2i(4, 14), Vector2i(5, 14), Vector2i(6, 14),
 		Vector2i(7, 14), Vector2i(8, 14), Vector2i(9, 14)],
 	"MAGIC": [Vector2i(11, 14), Vector2i(12, 14), Vector2i(13, 14), Vector2i(14, 14)],
-	"FIGHTDRINK": [Vector2i(15, 14), Vector2i(0, 15), Vector2i(1, 15), Vector2i(2, 15), Vector2i(3, 15),
-		Vector2i(4, 15), Vector2i(5, 15), Vector2i(6, 15)],
+	"FIGHT": [Vector2i(15, 14), Vector2i(0, 15), Vector2i(1, 15), Vector2i(2, 15)],
+	"DRINK": [Vector2i(3, 15), Vector2i(4, 15), Vector2i(5, 15), Vector2i(6, 15)],
 }
 
 func _ready():
+	tile_set = preload("res://Resources/text_tileset.tres").duplicate()
 	clear_cells()
+	refresh_text()
 
-func _process(_delta):
+func _process(delta):
 	clear_oob_cells()
-	if Engine.is_editor_hint():
-		var frame_data = {"text": text, "max_display_chars": max_display_chars, "max_display_lines": max_display_lines}
-		if frame_data != prev_frame_data:
-			update_text()
-		prev_frame_data = frame_data
-	if max_display_lines >= 0 and current_position.y >= max_display_lines:
-		return
-	if instant_queue:
-		for _c in char_queue:
-			process_char_queue()
-	else:
-		process_char_queue()
+	if char_queue_running:
+		time_since_last_char += delta
+	while time_since_last_char >= time_between_chars:
+		char_queue_running = process_char_queue()
+		if not char_queue_running:
+			break
+		display_chars += 1
+		time_since_last_char -= time_between_chars
 		
-func update_text() -> void:
+func refresh_text() -> void:
 	clear_cells()
+	tile_set.tile_size = Vector2(char_spacing, line_spacing)
 	current_position = Vector2i(0, 0)
-	current_display_chars = 0
+	display_chars = 0
 	char_queue = text.rsplit()
 	
 func clear_cells():
+	clear_oob_cells()
 	for cell in get_cell_range():
 		set_cell(cell, 0)
+		
+func clear_oob_cells():
+	for cell in get_used_cells():
+		if ((cell.y < 0 or (cell.y >= max_display_lines and max_display_lines >= 0)) or 
+				cell.x < 0 or (cell.x >= max_display_cols and max_display_cols >= 0)) and \
+				get_cell_atlas_coords(cell) != -Vector2i.ONE: 
+			set_cell(cell)
 			
-func get_cell_range(max_x: int = 28, max_y: int = 3) -> Array[Vector2i]:
+func get_cell_range(max_x = max_display_cols, max_y = max_display_lines) -> Array[Vector2i]:
+	if max_x < 0 or max_y < 0:
+		return get_used_cells()
 	var cell_range: Array[Vector2i] = []
 	for x in range(0, max_x):
 		for y in range(0, max_y):
 			cell_range.append(Vector2i(x, y))
 	return cell_range
 		
-func process_char_queue():
-	if (max_display_chars >= 0 and current_display_chars >= max_display_chars) or (len(char_queue) == 0): 
-		return
+func process_char_queue() -> bool:
+	if max_display_lines >= 0 and current_position.y >= max_display_lines:
+		return false
+	var to_next_space = char_queue.find(' ')
+	if to_next_space < 0:
+		to_next_space = len(char_queue)
+	if (max_display_cols >= 0) and (
+			current_position.x >= max_display_cols or current_position.x + to_next_space >= max_display_cols):
+		current_position = Vector2i(0, current_position.y + 1)
+	if (max_display_chars >= 0 and display_chars >= max_display_chars) or \
+			(len(char_queue) == 0) or \
+			(max_display_lines >= 0 and current_position.y >= max_display_lines): 
+		return false
 	var c = char_queue[0]
 	char_queue = char_queue.slice(1) # bc apparently you cant pop from PackedStringArray...
 	match c:
@@ -98,32 +140,19 @@ func process_char_queue():
 		_:
 			var tile: Vector2i
 			if tile_queue != null:
-				if len(tile_queue) == 0: return
+				if len(tile_queue) == 0: return true
 				tile = tile_queue.pop_front()
 				set_cell(current_position, 0, tile)
 			else:
 				tile = text_to_tiles.get(c, -Vector2i.ONE)
-				if tile == -Vector2i.ONE and c != " ": return
+				if tile == -Vector2i.ONE and c != " ": return true
 				set_cell(current_position, 0, text_to_tiles.get(c, Vector2(-1, -1)))
 			current_position.x += 1
-			current_display_chars += 1
-		
-func set_text(txt: String = "") -> void:
-	text = txt
-
-func get_split_lines() -> PackedStringArray:
-	return text.split('\n')
+	return true
 
 func move_cells_up():
 	for cell in get_cell_range():
-		print(cell)
 		var atlas_coords = get_cell_atlas_coords(cell)
 		set_cell(cell)
 		set_cell(Vector2i(cell.x, cell.y - 1), 0, atlas_coords)
 	current_position.y -= 1
-		
-func clear_oob_cells():
-	for cell in get_used_cells():
-		if cell.y < 0 or cell.y >= max_display_lines: 
-			set_cell(cell)
-		current_display_chars -= 1

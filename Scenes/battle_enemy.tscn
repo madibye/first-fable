@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqed57xn05m7v"]
+
+[ext_resource type="Script" path="res://Scripts/Battle/battle_enemy.gd" id="1_osh2l"]
+[ext_resource type="Texture2D" uid="uid://bhchr2b6ur5yv" path="res://Assets/battle_enemies.png" id="2_54ps2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6732v"]
+resource_local_to_scene = true
+atlas = ExtResource("2_54ps2")
+region = Rect2(9, 23, 31, 31)
+
+[node name="BattleEnemy" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_osh2l")
+av_name = "Jester"
+
+[node name="EnemySprite" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_6732v")

@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://bqgjb5urn3ijj"]
+
+[ext_resource type="Script" path="res://Scripts/overworld_player.gd" id="1_3yrpb"]
+[ext_resource type="Shader" path="res://Shaders/transparent_102.gdshader" id="2_cdtfu"]
+[ext_resource type="Texture2D" uid="uid://cd3g8cnxtxl0t" path="res://Assets/blm_overworld.png" id="2_s6hlc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c81da"]
+shader = ExtResource("2_cdtfu")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vmw7"]
+atlas = ExtResource("2_s6hlc")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g48vk"]
+atlas = ExtResource("2_s6hlc")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wb4a"]
+atlas = ExtResource("2_s6hlc")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6u13p"]
+atlas = ExtResource("2_s6hlc")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_shwg2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vmw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vmw7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g48vk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g48vk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wb4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wb4a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u13p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6u13p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8jx0v"]
+size = Vector2(16, 16)
+
+[node name="OverworldPlayer" type="CharacterBody2D"]
+script = ExtResource("1_3yrpb")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_c81da")
+position = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_shwg2")
+frame = 7
+flip_h = true
+
+[node name="CollisionShape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_8jx0v")
+
+[node name="CameraMover" type="RemoteTransform2D" parent="."]
+remote_path = NodePath(".")

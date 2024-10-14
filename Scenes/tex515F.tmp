@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=4 uid="uid://be5tng8gy2lh0"]
+
+[ext_resource type="Shader" path="res://Shaders/transparent_0.gdshader" id="1_ifu1y"]
+[ext_resource type="Texture2D" uid="uid://b7oqcrqnylqpn" path="res://Assets/textbox.png" id="2_s50nn"]
+[ext_resource type="Script" path="res://Scripts/textbox.gd" id="3_dyxqs"]
+[ext_resource type="PackedScene" uid="uid://br5xltnee07ke" path="res://Scenes/text_display.tscn" id="3_kuguh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2mooh"]
+shader = ExtResource("1_ifu1y")
+
+[node name="Textbox" type="NinePatchRect"]
+self_modulate = Color(0.956863, 0.835294, 1, 1)
+texture_filter = 1
+material = SubResource("ShaderMaterial_2mooh")
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -565.0
+offset_top = -241.0
+offset_right = -283.0
+offset_bottom = -183.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(4, 4)
+texture = ExtResource("2_s50nn")
+region_rect = Rect2(1, 0, 22, 21)
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+script = ExtResource("3_dyxqs")
+text = "Hello!
+This is Madi the [eep]y girl, speaking to you via a funny tilemap text display thingie.
+Her game will probably have a lot of these."
+
+[node name="ColorRect" type="ColorRect" parent="."]
+show_behind_parent = true
+layout_mode = 0
+offset_left = 3.0
+offset_top = 4.0
+offset_right = 278.0
+offset_bottom = 54.0
+color = Color(0.701961, 0.611765, 0.733333, 1)
+
+[node name="VisMask" type="ColorRect" parent="."]
+clip_children = 1
+layout_mode = 0
+offset_left = 4.0
+offset_top = 5.0
+offset_right = 278.0
+offset_bottom = 54.0
+
+[node name="TextDisplay" parent="VisMask" instance=ExtResource("3_kuguh")]
+position = Vector2(5, 3)
+scale = Vector2(1, 1)
+tile_map_data = PackedByteArray("AAAAAAAAAAAGAAsAAAABAAAAAAADAAsAAAACAAAAAAAIAAoAAAADAAAAAAAEAAoAAAAFAAAAAAAMAAoAAAAAAAEAAAAHAAsAAAABAAEAAAAMAAoAAAACAAEAAAAPAAoAAAADAAEAAAAIAAoAAAAFAAEAAAAEAAoAAAAGAAEAAAADAAsAAAAJAAEAAAAIAAoAAAAKAAEAAAALAAsAAAANAAEAAAAHAAoAAAAOAAEAAAAMAAoAAAARAAEAAAAPAAoAAAASAAEAAAAEAAoAAAAWAAEAAAALAAoAAAAXAAEAAAAMAAoAAAAYAAEAAAABAAsAAAAZAAEAAAAKAAoAAAAAAAIAAAABAAkAAAABAAIAAAAIAAoAAAACAAIAAAAFAAsAAAAEAAIAAAAKAAoAAAAFAAIAAAAEAAoAAAAGAAIAAAAAAAsAAAAJAAIAAAAKAAsAAAAKAAIAAAAMAAoAAAAOAAIAAAADAAsAAAAQAAIAAAACAAsAAAARAAIAAAAFAAoAAAASAAIAAAAEAAoAAAAXAAIAAAALAAoAAAAYAAIAAAAEAAoAAAAZAAIAAAAJAAsAAAAaAAIAAAAIAAoAAAAEAAEAAAAAAAsAAAAGAAAAAAABAAsAAAAJAAAAAAAHAAsAAAAKAAAAAAACAAsAAAALAAIAAAAPAAoAAAANAAAAAAACAAsAAAAOAAAAAAAIAAsAAAAPAAIAAAAFAAsAAAAQAAEAAAADAAsAAAARAAAAAAAMAAoAAAASAAAAAAAEAAoAAAATAAIAAAAFAAoAAAAVAAIAAAAMAAsAAAAWAAAAAAAJAAoAAAAXAAAAAAAIAAsAAAAYAAAAAAABAAsAAAAZAAAAAAABAAsAAAAaAAEAAAAMAAoAAAAcAAIAAAAEAAoAAAAEAAAAAAAOAAoAAAAHAAAAAAAKAAoAAAAHAAIAAAAIAAoAAAAIAAEAAAAHAAsAAAALAAEAAAAHAAsAAAAMAAAAAAAMAAsAAAAMAAIAAAAPAAoAAAAPAAEAAAAGAAsAAAAQAAAAAAAJAAsAAAATAAEAAAAMAAsAAAAUAAAAAAAEAAoAAAAUAAIAAAAPAAoAAAAVAAEAAAAHAAsAAAAaAAAAAAAMAAsAAAAbAAEAAAAIAAoAAAAcAAEAAAAAAAwAAAAeAAIAAAAPAAoAAAAfAAIAAAACAAsAAAAgAAIAAAAHAAsAAAAAAAMAAAACAAsAAAABAAMAAAAJAAoAAAADAAMAAAAHAAsAAAAEAAMAAAALAAoAAAAFAAMAAAAIAAoAAAAGAAMAAAAGAAsAAAAHAAMAAAAIAAoAAAAIAAMAAAAAAAwAAAA=")
+text = "Hello!
+This is Madi the [eep]y girl, speaking to you via a funny tilemap text display thingie.
+Her game will probably have a lot of these."
+max_display_lines = 4
+max_display_cols = 34
+time_between_chars = 0.025
