@@ -135,7 +135,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2dmar"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uqv7p"]
 texture = ExtResource("5_0c8qe")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
@@ -395,11 +395,11 @@ texture_region_size = Vector2i(8, 8)
 14:15/0 = 0
 15:15/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_f1hwb"]
+[sub_resource type="TileSet" id="TileSet_4c4mo"]
 tile_size = Vector2i(8, 12)
-sources/0 = SubResource("TileSetAtlasSource_2dmar")
+sources/0 = SubResource("TileSetAtlasSource_uqv7p")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1gxxs"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yhfhj"]
 texture = ExtResource("5_0c8qe")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
@@ -659,12 +659,13 @@ texture_region_size = Vector2i(8, 8)
 14:15/0 = 0
 15:15/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_h77h2"]
+[sub_resource type="TileSet" id="TileSet_dj6mg"]
 tile_size = Vector2i(7, 8)
-sources/0 = SubResource("TileSetAtlasSource_1gxxs")
+sources/0 = SubResource("TileSetAtlasSource_yhfhj")
 
 [node name="BattleScene" type="Node2D"]
 script = ExtResource("1_y8lsx")
+enemy_formation = 3
 
 [node name="PlayerDisplayBox" type="NinePatchRect" parent="."]
 texture_repeat = 2
@@ -752,25 +753,26 @@ offset_left = 18.0
 offset_top = 80.0
 offset_right = 18.0
 offset_bottom = 80.0
+enemy_id = 4
+av_name = "Wolf"
 
 [node name="BattleEnemy3" parent="PlayerDisplayBox/VisMask" instance=ExtResource("7_n3lhc")]
-offset_left = 54.0
-offset_top = 64.0
-offset_right = 54.0
-offset_bottom = 64.0
-enemy_id = 6
-av_name = "Knight"
+offset_left = 51.0
+offset_top = 48.0
+offset_right = 51.0
+offset_bottom = 48.0
+enemy_id = 3
+av_name = "BLJster"
 hp = 40
 max_hp = 40
 
 [node name="BattleEnemy4" parent="PlayerDisplayBox/VisMask" instance=ExtResource("7_n3lhc")]
-visible = false
 offset_left = 51.0
 offset_top = 80.0
 offset_right = 51.0
 offset_bottom = 80.0
-enemy_id = 0
-av_name = "Tester"
+enemy_id = 5
+av_name = "Hector"
 
 [node name="HPTrackerP1" parent="." instance=ExtResource("10_072f8")]
 offset_left = 899.0
@@ -822,7 +824,6 @@ offset_bottom = 290.0
 avatar_path = NodePath("../PlayerDisplayBox/VisMask/BattleEnemy3")
 
 [node name="HPTrackerE4" parent="." instance=ExtResource("10_072f8")]
-visible = false
 offset_left = 83.0
 offset_top = 380.0
 offset_right = 125.0
@@ -879,16 +880,6 @@ offset_left = 87.0
 offset_top = 500.0
 offset_right = 250.0
 offset_bottom = 531.0
-text = "Jesters and a Knight appeared!
-Madi's turn!
-Jesters and a Knight appeared!
-Jesters and a Knight appeared!
-Jesters and a Knight appeared!
-Jesters and a Knight appeared!
-Jesters and a Knight appeared!
-Jesters and a Knight appeared!
-Jesters and a Knight appeared!
-Madi's turn!"
 lines_to_move = 1
 line_spacing = 12
 can_input_to_move_text = false
@@ -905,7 +896,7 @@ offset_bottom = 28.0
 [node name="TextDisplay" parent="Textbox/VisMask" index="0"]
 position = Vector2(3, 1.75)
 scale = Vector2(0.5, 0.5)
-tile_set = SubResource("TileSet_f1hwb")
+tile_set = SubResource("TileSet_4c4mo")
 max_display_lines = 3
 max_display_cols = 39
 time_between_chars = 0.02
@@ -946,7 +937,7 @@ offset_bottom = 5.0
 text = "ATTACK"
 
 [node name="TextDisplay" parent="FightDisplayBox/VisMask/DefaultMoveBtn" index="0"]
-tile_set = SubResource("TileSet_h77h2")
+tile_set = SubResource("TileSet_dj6mg")
 text = "ATTACK"
 char_spacing = 7
 

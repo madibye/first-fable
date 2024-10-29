@@ -5,7 +5,9 @@ void vertex() {
 }
 
 void fragment() {
-	if (COLOR.r == 187.0/255.0 && COLOR.g == 187.0/255.0 && COLOR.b == 187.0/255.0) {
+	vec4 c = texture(TEXTURE, UV);
+	vec3 block_rgb = vec3(187.0/255.0, 187.0/255.0, 187.0/255.0);
+	if (c.rgb == block_rgb) {
 		COLOR.a = 0.0;
 	}
 }

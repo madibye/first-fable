@@ -7,7 +7,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_caw68"]
 shader = ExtResource("1_vyqu0")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g8j5c"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x3fi6"]
 texture = ExtResource("2_q46yr")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
@@ -267,16 +267,16 @@ texture_region_size = Vector2i(8, 8)
 14:15/0 = 0
 15:15/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_7868o"]
+[sub_resource type="TileSet" id="TileSet_6a67t"]
 tile_size = Vector2i(8, 8)
-sources/0 = SubResource("TileSetAtlasSource_g8j5c")
+sources/0 = SubResource("TileSetAtlasSource_x3fi6")
 
 [node name="TextDisplay" type="TileMapLayer"]
 texture_filter = 1
 material = SubResource("ShaderMaterial_caw68")
 position = Vector2(0, -2.99716)
 scale = Vector2(5, 5)
-tile_set = SubResource("TileSet_7868o")
+tile_set = SubResource("TileSet_6a67t")
 script = ExtResource("3_u4vow")
 max_display_cols = 33
 line_spacing = 8
