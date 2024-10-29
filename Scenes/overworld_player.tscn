@@ -1,14 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqgjb5urn3ijj"]
+[gd_scene load_steps=6 format=3 uid="uid://bqgjb5urn3ijj"]
 
 [ext_resource type="Script" path="res://Scripts/overworld_player.gd" id="1_3yrpb"]
-[ext_resource type="Shader" path="res://Shaders/transparent_102.gdshader" id="2_00qmy"]
+[ext_resource type="Shader" path="res://Shaders/transparent_bg.gdshader" id="1_qcivk"]
 [ext_resource type="SpriteFrames" uid="uid://tpoorgwnfpaw" path="res://Resources/overworld_player_sprites.tres" id="3_o465v"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m0hep"]
+shader = ExtResource("1_qcivk")
+shader_parameter/block_color = null
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_him60"]
-shader = ExtResource("2_00qmy")
+shader = ExtResource("1_qcivk")
+shader_parameter/block_color = Color(0.4, 0.4, 0.4, 1)
 
 [node name="OverworldPlayer" type="Node2D"]
 texture_repeat = 1
+material = SubResource("ShaderMaterial_m0hep")
 script = ExtResource("1_3yrpb")
 player_class = 1
 direction = Vector2(-1, 0)

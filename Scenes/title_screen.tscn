@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bl7lfstobko4j"]
+[gd_scene load_steps=15 format=3 uid="uid://bl7lfstobko4j"]
 
 [ext_resource type="Texture2D" uid="uid://btiunxjgrerf3" path="res://Assets/title_bg.png" id="1_aaopq"]
 [ext_resource type="Script" path="res://Scripts/title_screen.gd" id="1_uwmxd"]
@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dj0s26ytxhbbw" path="res://Scenes/text_button.tscn" id="4_rubl5"]
 [ext_resource type="Texture2D" uid="uid://dtq2qs5kyyoh4" path="res://Assets/glove.png" id="6_0x8ni"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yabul"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hqfm6"]
 texture = ExtResource("3_uinbi")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
@@ -267,11 +267,11 @@ texture_region_size = Vector2i(8, 8)
 14:15/0 = 0
 15:15/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_oeqj8"]
+[sub_resource type="TileSet" id="TileSet_up6ed"]
 tile_size = Vector2i(8, 8)
-sources/0 = SubResource("TileSetAtlasSource_yabul")
+sources/0 = SubResource("TileSetAtlasSource_hqfm6")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3cf4u"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_scmfa"]
 texture = ExtResource("3_uinbi")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
@@ -531,11 +531,11 @@ texture_region_size = Vector2i(8, 8)
 14:15/0 = 0
 15:15/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_u53jv"]
+[sub_resource type="TileSet" id="TileSet_cj65a"]
 tile_size = Vector2i(8, 8)
-sources/0 = SubResource("TileSetAtlasSource_3cf4u")
+sources/0 = SubResource("TileSetAtlasSource_scmfa")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s1q10"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lw3ae"]
 texture = ExtResource("3_uinbi")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
@@ -795,11 +795,11 @@ texture_region_size = Vector2i(8, 8)
 14:15/0 = 0
 15:15/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_6rp0i"]
+[sub_resource type="TileSet" id="TileSet_bwx23"]
 tile_size = Vector2i(8, 8)
-sources/0 = SubResource("TileSetAtlasSource_s1q10")
+sources/0 = SubResource("TileSetAtlasSource_lw3ae")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_35byb"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3wqov"]
 texture = ExtResource("3_uinbi")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
@@ -1059,9 +1059,9 @@ texture_region_size = Vector2i(8, 8)
 14:15/0 = 0
 15:15/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_s6cgv"]
+[sub_resource type="TileSet" id="TileSet_jrd3y"]
 tile_size = Vector2i(8, 8)
-sources/0 = SubResource("TileSetAtlasSource_35byb")
+sources/0 = SubResource("TileSetAtlasSource_3wqov")
 
 [node name="TitleScreen" type="Node2D"]
 position = Vector2(0, -358)
@@ -1076,8 +1076,8 @@ texture = ExtResource("1_aaopq")
 modulate = Color(0.968627, 0.517647, 0.847059, 1)
 position = Vector2(48.8889, 100.889)
 scale = Vector2(2, 2)
-tile_map_data = PackedByteArray("AAAAAAAAAAAPAAgAAAABAAAAAAACAAkAAAACAAAAAAALAAkAAAADAAAAAAAMAAkAAAAEAAAAAAANAAkAAAAAAAEAAAAPAAgAAAABAAEAAAAKAAgAAAACAAEAAAALAAgAAAADAAEAAAAFAAkAAAAEAAEAAAAOAAgAAAA=")
-tile_set = SubResource("TileSet_oeqj8")
+tile_map_data = PackedByteArray()
+tile_set = SubResource("TileSet_up6ed")
 text = "FIRST
 FABLE"
 time_between_chars = 0.0
@@ -1086,8 +1086,8 @@ time_between_chars = 0.0
 modulate = Color(0.968627, 0.517647, 0.847059, 1)
 position = Vector2(16.8889, 136.889)
 scale = Vector2(1, 1)
-tile_map_data = PackedByteArray("AAAAAAAAAAAKAAgAAAACAAAAAAAPAAgAAAADAAAAAAAPAAgAAAAEAAAAAAABAAgAAAAFAAAAAAACAAwAAAAGAAAAAAAMAAoAAAAHAAAAAAABAAsAAAAIAAAAAAAGAAsAAAAJAAAAAAADAAsAAAAKAAAAAAAMAAoAAAALAAAAAAAFAAsAAAAMAAAAAAAIAAoAAAANAAAAAAAHAAoAAAAPAAAAAAALAAkAAAAQAAAAAAAJAAkAAAARAAAAAAAAAAkAAAAEAAEAAAAFAAoAAAAFAAEAAAAMAAsAAAAHAAEAAAAAAAsAAAAIAAEAAAAEAAoAAAAJAAEAAAAHAAoAAAAKAAEAAAAMAAoAAAALAAEAAAAFAAoAAAAMAAEAAAAMAAsAAAANAAEAAAAIAAoAAAA=")
-tile_set = SubResource("TileSet_u53jv")
+tile_map_data = PackedByteArray()
+tile_set = SubResource("TileSet_cj65a")
 text = "A FF1-inspired RPG
     by madibye"
 time_between_chars = 0.0
@@ -1101,8 +1101,7 @@ scale = Vector2(1.5, 1.5)
 text = "NEW GAME"
 
 [node name="TextDisplay" parent="NGButton" index="0"]
-tile_map_data = PackedByteArray("AAAAAAAAAAAHAAkAAAABAAAAAAAOAAgAAAACAAAAAAAAAAoAAAAEAAAAAAAAAAkAAAAFAAAAAAAKAAgAAAAGAAAAAAAGAAkAAAAHAAAAAAAOAAgAAAA=")
-tile_set = SubResource("TileSet_6rp0i")
+tile_set = SubResource("TileSet_bwx23")
 text = "NEW GAME"
 
 [node name="ElementHitbox" parent="NGButton" index="1"]
@@ -1117,8 +1116,7 @@ scale = Vector2(1.5, 1.5)
 text = "CONTINUE"
 
 [node name="TextDisplay" parent="ContinueButton" index="0"]
-tile_map_data = PackedByteArray("AAAAAAAAAAAMAAgAAAABAAAAAAAIAAkAAAACAAAAAAAHAAkAAAADAAAAAAANAAkAAAAEAAAAAAACAAkAAAAFAAAAAAAHAAkAAAAGAAAAAAAOAAkAAAAHAAAAAAAOAAgAAAA=")
-tile_set = SubResource("TileSet_s6cgv")
+tile_set = SubResource("TileSet_jrd3y")
 text = "CONTINUE"
 
 [node name="ElementHitbox" parent="ContinueButton" index="1"]

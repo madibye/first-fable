@@ -1,15 +1,16 @@
 [gd_scene load_steps=9 format=3 uid="uid://ga3b5se2417b"]
 
-[ext_resource type="Shader" path="res://Shaders/transparent_0.gdshader" id="1_bgywk"]
+[ext_resource type="Shader" path="res://Shaders/transparent_bg.gdshader" id="1_dac2v"]
 [ext_resource type="Texture2D" uid="uid://b7oqcrqnylqpn" path="res://Assets/textbox.png" id="2_887bq"]
 [ext_resource type="PackedScene" uid="uid://br5xltnee07ke" path="res://Scenes/text_display.tscn" id="3_giiho"]
 [ext_resource type="Script" path="res://Scripts/Battle/hp_tracker.gd" id="3_yck3m"]
 [ext_resource type="Texture2D" uid="uid://co68jmp3h7vvx" path="res://Assets/text_tilemap.png" id="4_33l32"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dobpy"]
-shader = ExtResource("1_bgywk")
+shader = ExtResource("1_dac2v")
+shader_parameter/block_color = null
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nqi7m"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lltby"]
 texture = ExtResource("4_33l32")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
@@ -269,9 +270,9 @@ texture_region_size = Vector2i(8, 8)
 14:15/0 = 0
 15:15/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_fhcp2"]
+[sub_resource type="TileSet" id="TileSet_6bimf"]
 tile_size = Vector2i(8, 11)
-sources/0 = SubResource("TileSetAtlasSource_nqi7m")
+sources/0 = SubResource("TileSetAtlasSource_lltby")
 
 [node name="HPTracker" type="NinePatchRect"]
 material = SubResource("ShaderMaterial_dobpy")
@@ -289,7 +290,8 @@ script = ExtResource("3_yck3m")
 [node name="TextDisplay" parent="." instance=ExtResource("3_giiho")]
 position = Vector2(6.5, 5.5)
 scale = Vector2(0.5, 0.5)
-tile_set = SubResource("TileSet_fhcp2")
+tile_map_data = PackedByteArray()
+tile_set = SubResource("TileSet_6bimf")
 text = "Madi
 HP
  20l20"
