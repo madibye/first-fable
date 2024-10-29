@@ -8,15 +8,9 @@ extends Element
 var battle_scene: BattleScene
 @onready var moves = [MoveBase.new(), MoveBase.new(), MoveBase.new(), MoveBase.new()]
 
-func _ready():
-	moves[0].move_name = "Magical Shine"
-	moves[1].move_name = "Fiery Blaze"
-	moves[2].move_name = "Lightning Strike"
-	moves[3].move_name = "Ice Storm"
-
 # maybe this belongs elsewhere IDK
 func show_hp_text(shp: int):
-	if shp == 0 or not hitbox:
+	if shp == 0 or not get_hitbox():
 		return
 	var hp_text: TextDisplay = hitbox.hp_text.duplicate()
 	hitbox.add_child(hp_text)

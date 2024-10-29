@@ -1170,4 +1170,4 @@ position = Vector2(16, 0)
 
 [node name="OverworldPlayer" parent="." instance=ExtResource("1_0sslx")]
 position = Vector2(8, 8)
-player_class = 0
+player_class = 4

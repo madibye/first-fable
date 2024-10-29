@@ -2,10 +2,17 @@
 class_name TextDisplay
 extends TileMapLayer
 
+signal char_queue_paused
+signal char_queue_finished
+
 @export_multiline var text = "":
 	set(t):
+		var prior_text = text
 		text = t
-		refresh_text()
+		if len(prior_text) == 0 or not text.begins_with(prior_text):
+			refresh_text()
+		else:
+			add_to_char_queue(text.trim_prefix(prior_text))
 var display_chars: int = 0
 @export var max_display_chars: int = -1:
 	set(i):
@@ -26,12 +33,21 @@ var display_chars: int = 0
 @export var char_spacing: int = 8:
 	set(i):
 		char_spacing = i
-		refresh_text()
+		refresh_tile_size()
 @export var line_spacing: int = 10:
 	set(i):
 		line_spacing = i
-		refresh_text()
+		refresh_tile_size()
+@export var auto_move_along: bool = false:
+	set(b):
+		auto_move_along = b
+		if b and not char_queue_paused.is_connected(move_text_along): 
+			char_queue_paused.connect(move_text_along)
+		elif not b and char_queue_paused.is_connected(move_text_along): 
+			char_queue_paused.disconnect(move_text_along)
 var char_queue_running: bool = true
+var tween_running: bool = false
+var lines_to_move: int = 1
 var time_since_last_char: float = 0.0
 var hidden_lines: PackedInt32Array
 var char_queue: PackedStringArray
@@ -71,6 +87,7 @@ var text_to_tile_lists: Dictionary = {
 
 func _ready():
 	tile_set = preload("res://Resources/text_tileset.tres").duplicate()
+	auto_move_along = auto_move_along
 	clear_cells()
 	refresh_text()
 
@@ -79,7 +96,11 @@ func _process(delta):
 	if char_queue_running:
 		time_since_last_char += delta
 	while time_since_last_char >= time_between_chars:
+		var prev_cqr = char_queue_running
 		char_queue_running = process_char_queue()
+		if prev_cqr and not char_queue_running:
+			if len(char_queue) > 0: char_queue_paused.emit()
+			else: char_queue_finished.emit()
 		if not char_queue_running:
 			break
 		display_chars += 1
@@ -91,6 +112,12 @@ func refresh_text() -> void:
 	current_position = Vector2i(0, 0)
 	display_chars = 0
 	char_queue = text.rsplit()
+	
+func refresh_tile_size():
+	tile_set.tile_size = Vector2(char_spacing, line_spacing)
+
+func add_to_char_queue(txt: String) -> void:
+	char_queue = txt.rsplit()
 	
 func clear_cells():
 	clear_oob_cells()
@@ -156,3 +183,20 @@ func move_cells_up():
 		set_cell(cell)
 		set_cell(Vector2i(cell.x, cell.y - 1), 0, atlas_coords)
 	current_position.y -= 1
+	
+func move_text_along() -> void:
+	while tween_running or char_queue_running:
+		await get_tree().process_frame
+	var tween = create_tween()
+	var tileset_offset = tile_set.tile_size.y * lines_to_move * scale.y
+	var move_time = {
+		1: 0.3,
+		2: 0.45,
+	}.get(lines_to_move, 0.3 * lines_to_move)
+	tween.tween_property(self, "position:y", position.y - tileset_offset, move_time)
+	tween_running = true
+	await tween.finished
+	tween_running = false
+	for _i in lines_to_move:
+		move_cells_up()
+	position.y += tileset_offset

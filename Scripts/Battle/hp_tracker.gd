@@ -24,4 +24,6 @@ func update_text():
 func _process(_delta):
 	if get_parent() is BattleScene:
 		visible = avatar != null
+		if avatar is BattleEnemy:
+			visible = avatar.enemy_id != BattleGlobals.Enemy.None
 	update_text()

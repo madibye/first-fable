@@ -9,7 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dobpy"]
 shader = ExtResource("1_bgywk")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ufta"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_nqi7m"]
 texture = ExtResource("4_33l32")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
@@ -269,9 +269,9 @@ texture_region_size = Vector2i(8, 8)
 14:15/0 = 0
 15:15/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_8vcww"]
+[sub_resource type="TileSet" id="TileSet_fhcp2"]
 tile_size = Vector2i(8, 11)
-sources/0 = SubResource("TileSetAtlasSource_0ufta")
+sources/0 = SubResource("TileSetAtlasSource_nqi7m")
 
 [node name="HPTracker" type="NinePatchRect"]
 material = SubResource("ShaderMaterial_dobpy")
@@ -289,7 +289,7 @@ script = ExtResource("3_yck3m")
 [node name="TextDisplay" parent="." instance=ExtResource("3_giiho")]
 position = Vector2(6.5, 5.5)
 scale = Vector2(0.5, 0.5)
-tile_set = SubResource("TileSet_8vcww")
+tile_set = SubResource("TileSet_fhcp2")
 text = "Madi
 HP
  20l20"

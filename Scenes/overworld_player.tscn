@@ -20,10 +20,10 @@ remote_path = NodePath(".")
 material = SubResource("ShaderMaterial_him60")
 position = Vector2(0, -4)
 sprite_frames = ExtResource("3_o465v")
-frame = 14
+frame = 6
 
 [node name="SpriteBtmHalf" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_him60")
 position = Vector2(0, 4)
 sprite_frames = ExtResource("3_o465v")
-frame = 10
+frame = 2

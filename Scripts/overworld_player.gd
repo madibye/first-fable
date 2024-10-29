@@ -2,9 +2,6 @@
 class_name OverworldPlayer
 extends Actor
 
-# TODO: move this somewhere else lmao
-enum Class {Warrior, Rogue, BlackBelt, RedMage, BlackMage, WhiteMage}
-
 @onready var sprite_top_half: AnimatedSprite2D = $SpriteTopHalf
 @onready var sprite_btm_half: AnimatedSprite2D = $SpriteBtmHalf
 @onready var camera_mover: RemoteTransform2D = $CameraMover
@@ -15,12 +12,12 @@ enum Class {Warrior, Rogue, BlackBelt, RedMage, BlackMage, WhiteMage}
 	"move_down": move_tile.bind(Vector2.DOWN),
 }
 var class_offsets: Dictionary = {
-	Class.BlackMage: 0,
-	Class.WhiteMage: 8,
-	Class.RedMage: 16,
-	Class.Warrior: 24,
+	BattleGlobals.PlayerClass.BlackMage: 0,
+	BattleGlobals.PlayerClass.WhiteMage: 8,
+	BattleGlobals.PlayerClass.RedMage: 16,
+	BattleGlobals.PlayerClass.Warrior: 24,
 }
-@export var player_class: Class = Class.BlackMage
+@export var player_class: BattleGlobals.PlayerClass = BattleGlobals.PlayerClass.BlackMage
 var frame_offset: int
 var level: OverworldLevel
 

@@ -9,7 +9,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2mooh"]
 shader = ExtResource("1_ifu1y")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_swcg0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ra6rp"]
 texture = ExtResource("5_jyf1s")
 texture_region_size = Vector2i(8, 8)
 0:0/0 = 0
@@ -269,9 +269,9 @@ texture_region_size = Vector2i(8, 8)
 14:15/0 = 0
 15:15/0 = 0
 
-[sub_resource type="TileSet" id="TileSet_qwx73"]
+[sub_resource type="TileSet" id="TileSet_5cg0j"]
 tile_size = Vector2i(8, 9)
-sources/0 = SubResource("TileSetAtlasSource_swcg0")
+sources/0 = SubResource("TileSetAtlasSource_ra6rp")
 
 [node name="Textbox" type="NinePatchRect"]
 self_modulate = Color(0.792157, 0.658824, 0.937255, 1)
@@ -319,7 +319,7 @@ offset_bottom = 49.0
 [node name="TextDisplay" parent="VisMask" instance=ExtResource("3_kuguh")]
 position = Vector2(5, 3)
 scale = Vector2(1, 1)
-tile_set = SubResource("TileSet_qwx73")
+tile_set = SubResource("TileSet_5cg0j")
 max_display_lines = 4
 max_display_cols = 34
 time_between_chars = 0.025

@@ -24,6 +24,7 @@ var tween_running: bool = false
 		line_spacing = i
 		if not text_display: await ready
 		text_display.line_spacing = i
+@export var can_input_to_move_text = true
 
 @export var move_text_in_editor: bool = false:
 	set(_s): move_text_along()
@@ -35,33 +36,22 @@ func _ready():
 func _process(_delta):
 	color_rect.size = size - Vector2(8, 8)
 	vis_mask.size = color_rect.size
+	text_display.lines_to_move = lines_to_move
 		
 func _input(event):
+	if not can_input_to_move_text:
+		return
 	if not event is InputEventMouseButton:
 		if event.is_action_pressed("interact"):
 			move_text_along()
 	elif event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
 		move_text_along()
 	
+func move_text_along():
+	if len(text_display.char_queue) == 0:
+		textbox_done.emit()
+	else:
+		text_display.move_text_along()
+	
 func get_split_lines() -> PackedStringArray:
 	return text.split('\n')
-
-func move_text_along() -> void:
-	if tween_running or text_display.char_queue_running:
-		return
-	if text_display.display_chars >= len(text):
-		textbox_done.emit()
-		return
-	var tween = create_tween()
-	var tileset_offset = text_display.tile_set.tile_size.y * lines_to_move
-	var move_time = {
-		1: 0.3,
-		2: 0.45,
-	}.get(lines_to_move, 0.3 * lines_to_move)
-	tween.tween_property(text_display, "position:y", text_display.position.y - tileset_offset, move_time)
-	tween_running = true
-	await tween.step_finished
-	tween_running = false
-	for _i in lines_to_move:
-		text_display.move_cells_up()
-	text_display.position.y += tileset_offset
