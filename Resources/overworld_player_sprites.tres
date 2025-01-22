@@ -1,9 +1,9 @@
 [gd_resource type="SpriteFrames" load_steps=37 format=3 uid="uid://tpoorgwnfpaw"]
 
-[ext_resource type="Texture2D" uid="uid://cd3g8cnxtxl0t" path="res://Assets/blm_overworld.png" id="1_ulhnf"]
-[ext_resource type="Texture2D" uid="uid://dv7bt2pdwxv3d" path="res://Assets/whm_overworld.png" id="2_rv3ty"]
-[ext_resource type="Texture2D" uid="uid://bdcthfd2qd34v" path="res://Assets/rdm_overworld.png" id="3_7ovjj"]
-[ext_resource type="Texture2D" uid="uid://bqyvr75ua0mcf" path="res://Assets/war_overworld.png" id="4_41gbp"]
+[ext_resource type="Texture2D" uid="uid://cd3g8cnxtxl0t" path="res://assets/blm_overworld.png" id="1_ulhnf"]
+[ext_resource type="Texture2D" uid="uid://dv7bt2pdwxv3d" path="res://assets/whm_overworld.png" id="2_rv3ty"]
+[ext_resource type="Texture2D" uid="uid://bdcthfd2qd34v" path="res://assets/rdm_overworld.png" id="3_7ovjj"]
+[ext_resource type="Texture2D" uid="uid://bqyvr75ua0mcf" path="res://assets/war_overworld.png" id="4_41gbp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bmwll"]
 atlas = ExtResource("1_ulhnf")

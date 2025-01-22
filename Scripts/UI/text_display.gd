@@ -88,6 +88,8 @@ var text_to_tile_lists: Dictionary = {
 func _ready():
 	tile_set = preload("res://Resources/text_tileset.tres").duplicate()
 	auto_move_along = auto_move_along
+	if get_parent().get("text") is String:
+		text = get_parent().get("text")
 	clear_cells()
 	refresh_text()
 
@@ -106,7 +108,9 @@ func _process(delta):
 		display_chars += 1
 		time_since_last_char -= time_between_chars
 		
-func refresh_text() -> void:
+func refresh_text(txt: String = text) -> void:
+	if text != txt:
+		text = txt
 	clear_cells()
 	tile_set.tile_size = Vector2(char_spacing, line_spacing)
 	current_position = Vector2i(0, 0)

@@ -73,8 +73,9 @@ func do_interaction():
 func move_tile(dir: Vector2):
 	var move = true
 	direction = dir
-	if overworld_level.actor_positions.find_key(get_facing_tile()):
-		move = false
+	var walk_over_actor: Actor = overworld_level.actor_positions.find_key(get_facing_tile())
+	if walk_over_actor:
+		move = walk_over_actor.can_walk_over
 	var tile_data = overworld_level.get_cell_tile_data(get_facing_tile())
 	if move and tile_data is TileData:
 		if not tile_data.get_custom_data("WalkCollision"):
@@ -83,7 +84,12 @@ func move_tile(dir: Vector2):
 	if move:
 		create_tween().tween_property(self, "position", overworld_level.map_to_local(get_facing_tile()), move_time)
 	do_walk_anim()
-	get_tree().create_timer(move_time).timeout.connect(func(): controls_locked = false)
+	get_tree().create_timer(move_time).timeout.connect(
+		func post_walk(): 
+			controls_locked = false
+			if walk_over_actor:
+				walk_over_actor.walk_over(self)
+	)
 
 func do_walk_anim():
 	match direction:

@@ -1,8 +1,8 @@
 [gd_scene load_steps=89 format=3 uid="uid://xoiq8tv5arkb"]
 
-[ext_resource type="Script" path="res://Scripts/Battle/battle_player.gd" id="1_6fica"]
-[ext_resource type="Texture2D" uid="uid://c11nenvuj3ygf" path="res://Assets/light_warriors.png" id="3_hkhg7"]
-[ext_resource type="PackedScene" uid="uid://cdkr3ys2p8pav" path="res://Scenes/element_hitbox.tscn" id="3_lygly"]
+[ext_resource type="Script" uid="uid://cpfd54ikspb8o" path="res://scripts/battle/battle_player.gd" id="1_6fica"]
+[ext_resource type="Texture2D" uid="uid://c11nenvuj3ygf" path="res://assets/light_warriors.png" id="3_hkhg7"]
+[ext_resource type="PackedScene" uid="uid://cdkr3ys2p8pav" path="res://scenes/element_hitbox.tscn" id="3_lygly"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ru4nd"]
 atlas = ExtResource("3_hkhg7")

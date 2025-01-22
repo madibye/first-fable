@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dlnjrymrd7u78"]
 
-[ext_resource type="Script" path="res://Scripts/well_actor.gd" id="1_k8c1h"]
-[ext_resource type="Shader" path="res://Shaders/transparent_bg.gdshader" id="2_ui0lq"]
-[ext_resource type="Texture2D" uid="uid://dhervok82drev" path="res://Assets/test_town_tilemap.png" id="3_77j7d"]
+[ext_resource type="Script" uid="uid://b1dkl5d6cefuy" path="res://scripts/actor/well_actor.gd" id="1_k8c1h"]
+[ext_resource type="Shader" uid="uid://d3wxx6rrff288" path="res://shaders/transparent_bg.gdshader" id="2_ui0lq"]
+[ext_resource type="Texture2D" uid="uid://dhervok82drev" path="res://assets/test_town_tilemap.png" id="3_77j7d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p580v"]
 shader = ExtResource("2_ui0lq")

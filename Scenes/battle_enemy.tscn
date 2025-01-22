@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dqed57xn05m7v"]
 
-[ext_resource type="Script" path="res://Scripts/Battle/battle_enemy.gd" id="1_osh2l"]
-[ext_resource type="Texture2D" uid="uid://bhchr2b6ur5yv" path="res://Assets/battle_enemies.png" id="2_54ps2"]
-[ext_resource type="PackedScene" uid="uid://cdkr3ys2p8pav" path="res://Scenes/element_hitbox.tscn" id="3_l5ues"]
+[ext_resource type="Script" uid="uid://6ixwxslcgnus" path="res://scripts/battle/battle_enemy.gd" id="1_osh2l"]
+[ext_resource type="Texture2D" uid="uid://bhchr2b6ur5yv" path="res://assets/battle_enemies.png" id="2_54ps2"]
+[ext_resource type="PackedScene" uid="uid://cdkr3ys2p8pav" path="res://scenes/element_hitbox.tscn" id="3_l5ues"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6732v"]
 resource_local_to_scene = true

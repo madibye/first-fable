@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bqgjb5urn3ijj"]
 
-[ext_resource type="Script" path="res://Scripts/overworld_player.gd" id="1_3yrpb"]
-[ext_resource type="Shader" path="res://Shaders/transparent_bg.gdshader" id="1_qcivk"]
-[ext_resource type="SpriteFrames" uid="uid://tpoorgwnfpaw" path="res://Resources/overworld_player_sprites.tres" id="3_o465v"]
+[ext_resource type="Script" uid="uid://ks4sw68dx5s5" path="res://scripts/overworld_player.gd" id="1_3yrpb"]
+[ext_resource type="Shader" uid="uid://d3wxx6rrff288" path="res://shaders/transparent_bg.gdshader" id="1_qcivk"]
+[ext_resource type="SpriteFrames" uid="uid://tpoorgwnfpaw" path="res://resources/overworld_player_sprites.tres" id="3_o465v"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_m0hep"]
 shader = ExtResource("1_qcivk")

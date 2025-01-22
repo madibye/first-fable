@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdcthfd2qd34v"
-path="res://.godot/imported/rdm_overworld.png-c049e6a52b319f6bfc3011132104e9e7.ctex"
+path="res://.godot/imported/rdm_overworld.png-c245548d205ef699c59673c5e985a399.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/rdm_overworld.png"
-dest_files=["res://.godot/imported/rdm_overworld.png-c049e6a52b319f6bfc3011132104e9e7.ctex"]
+source_file="res://assets/rdm_overworld.png"
+dest_files=["res://.godot/imported/rdm_overworld.png-c245548d205ef699c59673c5e985a399.ctex"]
 
 [params]
 

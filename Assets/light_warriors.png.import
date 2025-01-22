@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c11nenvuj3ygf"
-path="res://.godot/imported/light_warriors.png-edb7e2cbdb1d572fe40b311beb0763e3.ctex"
+path="res://.godot/imported/light_warriors.png-f5b5e071f551feff6da1020900f6170f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/light_warriors.png"
-dest_files=["res://.godot/imported/light_warriors.png-edb7e2cbdb1d572fe40b311beb0763e3.ctex"]
+source_file="res://assets/light_warriors.png"
+dest_files=["res://.godot/imported/light_warriors.png-f5b5e071f551feff6da1020900f6170f.ctex"]
 
 [params]
 

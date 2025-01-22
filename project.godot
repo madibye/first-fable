@@ -11,14 +11,19 @@ config_version=5
 [application]
 
 config/name="First Fable"
-run/main_scene="res://Scenes/test_overworld.tscn"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+run/main_scene="res://scenes/master_scene.tscn"
+config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
-PartyInfo="*res://Scripts/party_info.gd"
-BattleGlobals="*res://Scripts/Battle/battle_globals.gd"
+PartyInfo="*res://scripts/party_info.gd"
+BattleGlobals="*res://scripts/battle/battle_globals.gd"
+SceneGlobals="*res://scripts/scene_globals.gd"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/script-tabs/plugin.cfg")
 
 [input]
 
